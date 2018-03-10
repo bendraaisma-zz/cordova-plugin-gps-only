@@ -18,7 +18,7 @@
     </js-module>  
     
     <platform name="android">
-        <source-file src="src/android/GpsOnly.java" target-dir="src/main/java/br/com/etpi/gps"/>
+        <source-file src="src/android/GpsOnly.java" target-dir="src/br/com/etpi/gps"/>
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
             <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
