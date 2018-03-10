@@ -1,6 +1,6 @@
 'use strict'
 
-const jsGpsOnly = require("./www/js-gps-only.");
+const jsGpsOnly = require("./www/js-gps-only");
 
 var gpsOnlyModule = (function() {
 	

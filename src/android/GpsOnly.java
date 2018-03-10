@@ -20,9 +20,13 @@ import static android.content.Context.LOCATION_SERVICE;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static android.location.LocationManager.GPS_PROVIDER;
 import static android.location.LocationProvider.OUT_OF_SERVICE;
+import static android.util.Log.e;
+import static android.util.Log.i;
+import static android.util.Log.w;
 
 public class GpsOnly extends CordovaPlugin {
 
+    private static final String TAG = "GpsOnly";
     private static final String[] PERMISSION = {ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION};
     private static final int REQUEST_CODE = 0;
     private LocationManager locationManager;
@@ -38,16 +42,18 @@ public class GpsOnly extends CordovaPlugin {
         super.initialize(cordova, webView);
         locationManager = (LocationManager) webView.getContext().getSystemService(LOCATION_SERVICE);
         if (!(cordova.hasPermission(PERMISSION[0]) && cordova.hasPermission(PERMISSION[1]))) {
+            i(TAG, "Requesting GPS permission");
             cordova.requestPermissions(this, REQUEST_CODE, PERMISSION);
         } else {
             locationManager.requestLocationUpdates(GPS_PROVIDER, 0, 0, new GpsOnlyLocationListener());
             GpsOnly.this.hasPermission = true;
+            i(TAG, "GPS permission enabled");
         }
     }
 
     @Override
     public boolean execute(String action, CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
-        if ("coordenate".equals(action)) {
+        if ("position".equals(action)) {
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
                     if (GpsOnly.this.hasPermission) {
@@ -62,11 +68,14 @@ public class GpsOnly extends CordovaPlugin {
                             r.put("speed", GpsOnly.this.location.getSpeed());
                             r.put("time", GpsOnly.this.location.getTime());
                             callbackContext.success(r);
+                            i(TAG, "GPS successful");
                         } catch (JSONException e) {
                             callbackContext.error(e.getMessage());
+                            e(TAG, "GPS error " + e.getMessage());
                         }
                     } else {
                         callbackContext.error("No permission to read GPS data, verify GPS permission");
+                        w(TAG, "No permission to read GPS data, verify GPS permission");
                     }
                 }
             });
@@ -80,6 +89,7 @@ public class GpsOnly extends CordovaPlugin {
         if (REQUEST_CODE == requestCode && PERMISSION.length == permissions.length && PERMISSION.length == grantResults.length && PERMISSION_GRANTED == grantResults[0] && PERMISSION_GRANTED == grantResults[1]) {
             locationManager.requestLocationUpdates(GPS_PROVIDER, 0, 0, new GpsOnlyLocationListener());
             GpsOnly.this.hasPermission = true;
+            i(TAG, "GPS permission enabled");
         }
     }
 
@@ -87,21 +97,25 @@ public class GpsOnly extends CordovaPlugin {
 
         public void onLocationChanged(Location location) {
             GpsOnly.this.location = location;
+            i(TAG, "GPS Location changed");
         }
 
         public void onStatusChanged(String provider, int status, Bundle extras) {
             GpsOnly.this.provider = provider;
             GpsOnly.this.status = status;
+            i(TAG, "GPS Status changed");
         }
 
         public void onProviderEnabled(String provider) {
             GpsOnly.this.provider = provider;
             GpsOnly.this.providerEnabled = true;
+            i(TAG, "GPS Provider enabled");
         }
 
         public void onProviderDisabled(String provider) {
             GpsOnly.this.provider = provider;
             GpsOnly.this.providerEnabled = false;
+            i(TAG, "GPS Provider disabled");
         }
     }
 }
