@@ -1,6 +1,6 @@
 'use strict'
 
-const gpsOnly = require("./www/js-gps-only.");
+const jsGpsOnly = require("./www/js-gps-only.");
 
 var gpsOnlyModule = (function() {
 	
@@ -8,10 +8,7 @@ var gpsOnlyModule = (function() {
 	
 	GpsOnly.prototype.coordenate = function(success, failure) {
 
-		gpsOnly.coordenate({
-			success: success,
-			failure: failure
-		});
+		jsGpsOnly.coordenate(success, failure);
 	};
 	
 	return {

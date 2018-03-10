@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-gps-only",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Cordova GPS Only Plugin For Android.",
   "main": "index.js",
   "typings": "js-gps-only.d.ts",
