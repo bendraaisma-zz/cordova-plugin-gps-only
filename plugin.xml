@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-gps-only"
+    version="1.0.0">
+    <name>GpsOnly</name>
+    <description>Cordova GPS Only Plugin For Android</description>
+    <author>bendraaisma@gmail.com</author>
+    <license>Apache 2.0</license>
+    <keywords>cordova,ionic,gps,android</keywords>   
+    
+    <engines>
+        <engine name="cordova" version=">=5.0.0"/>
+    </engines>
+    
+    <js-module src="www/js-gps-only.js" name="gpsOnly">
+        <clobbers target="gpsOnly"/>
+    </js-module>  
+    
+    <platform name="android">
+        <source-file src="src/android/GpsOnly.java" target-dir="src/main/java/br/com/etpi/gps"/>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.hardware.location" />
+        </config-file>
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="GpsOnly">
+                <param name="android-package" value="br.com.etpi.gps.GpsOnly"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <info>
+        
+		</info>
+    </platform>
+</plugin>
