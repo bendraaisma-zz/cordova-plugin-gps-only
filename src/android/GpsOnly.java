@@ -46,7 +46,7 @@ public class GpsOnly extends CordovaPlugin {
     }
 
     @Override
-    public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
         if ("coordenate".equals(action)) {
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
