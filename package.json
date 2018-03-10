@@ -1,23 +1,17 @@
 {
   "name": "cordova-plugin-gps-only",
-  "displayName": "GpsOnly",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Cordova GPS Only Plugin For Android.",
   "main": "www/js-gps-only.js",
+  "typings": "js-gps-only.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "bendraaisma@gmail.com",
-  "license": "Apache-2.0",
   "cordova": {
-    "plugins": {
-      "cordova-plugin-whitelist": {}
-    },
     "platforms": [
       "android"
     ]
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bendraaisma/cordova-plugin-gps-only.git"
@@ -29,8 +23,11 @@
     "gps",
     "only"
   ],
+  "author": "bendraaisma@gmail.com",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/bendraaisma/cordova-plugin-gps-only/issues"
   },
-  "homepage": "https://github.com/bendraaisma/cordova-plugin-gps-only#readme"
+  "homepage": "https://github.com/bendraaisma/cordova-plugin-gps-only#readme",
+  "dependencies": {}
 }
