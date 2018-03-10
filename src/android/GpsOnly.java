@@ -53,7 +53,7 @@ public class GpsOnly extends CordovaPlugin {
                     if (GpsOnly.this.hasPermission) {
                         JSONObject r = new JSONObject();
                         try {
-                            r.put("status =", GpsOnly.this.status);
+                            r.put("status", GpsOnly.this.status);
                             r.put("providerEnabled", GpsOnly.this.providerEnabled);
                             r.put("provider", GpsOnly.this.provider);
                             r.put("longitude", GpsOnly.this.location.getLongitude());
