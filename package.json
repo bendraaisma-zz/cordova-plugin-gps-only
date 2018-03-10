@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-gps-only",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Cordova GPS Only Plugin For Android.",
   "main": "www/js-gps-only.js",
   "typings": "js-gps-only.d.ts",
@@ -29,7 +29,5 @@
     "url": "https://github.com/bendraaisma/cordova-plugin-gps-only/issues"
   },
   "homepage": "https://github.com/bendraaisma/cordova-plugin-gps-only#readme",
-  "dependencies": {
-    "cordova": "^8.0.0"
-  }
+  "dependencies": {}
 }
