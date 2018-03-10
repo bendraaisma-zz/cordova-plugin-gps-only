@@ -41,7 +41,7 @@ public class GpsOnly extends CordovaPlugin {
             cordova.requestPermissions(this, REQUEST_CODE, PERMISSION);
         } else {
             locationManager.requestLocationUpdates(GPS_PROVIDER, 0, 0, new GpsOnlyLocationListener());
-            Gps.this.hasPermission = true;
+            GpsOnly.this.hasPermission = true;
         }
     }
 
@@ -50,17 +50,17 @@ public class GpsOnly extends CordovaPlugin {
         if ("coordenate".equals(action)) {
             cordova.getThreadPool().execute(new Runnable() {
                 public void run() {
-                    if (Gps.this.hasPermission) {
+                    if (GpsOnly.this.hasPermission) {
                         JSONObject r = new JSONObject();
                         try {
-                            r.put("status =", Gps.this.status);
-                            r.put("providerEnabled", Gps.this.providerEnabled);
-                            r.put("provider", Gps.this.provider);
-                            r.put("longitude", Gps.this.location.getLongitude());
-                            r.put("latitude", Gps.this.location.getLatitude());
-                            r.put("altitude", Gps.this.location.getAltitude());
-                            r.put("speed", Gps.this.location.getSpeed());
-                            r.put("time", Gps.this.location.getTime());
+                            r.put("status =", GpsOnly.this.status);
+                            r.put("providerEnabled", GpsOnly.this.providerEnabled);
+                            r.put("provider", GpsOnly.this.provider);
+                            r.put("longitude", GpsOnly.this.location.getLongitude());
+                            r.put("latitude", GpsOnly.this.location.getLatitude());
+                            r.put("altitude", GpsOnly.this.location.getAltitude());
+                            r.put("speed", GpsOnly.this.location.getSpeed());
+                            r.put("time", GpsOnly.this.location.getTime());
                             callbackContext.success(r);
                         } catch (JSONException e) {
                             callbackContext.error(e.getMessage());
@@ -79,29 +79,29 @@ public class GpsOnly extends CordovaPlugin {
     public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) throws JSONException {
         if (REQUEST_CODE == requestCode && PERMISSION.length == permissions.length && PERMISSION.length == grantResults.length && PERMISSION_GRANTED == grantResults[0] && PERMISSION_GRANTED == grantResults[1]) {
             locationManager.requestLocationUpdates(GPS_PROVIDER, 0, 0, new GpsOnlyLocationListener());
-            Gps.this.hasPermission = true;
+            GpsOnly.this.hasPermission = true;
         }
     }
 
     class GpsOnlyLocationListener implements LocationListener {
 
         public void onLocationChanged(Location location) {
-            Gps.this.location = location;
+            GpsOnly.this.location = location;
         }
 
         public void onStatusChanged(String provider, int status, Bundle extras) {
-            Gps.this.provider = provider;
-            Gps.this.status = status;
+            GpsOnly.this.provider = provider;
+            GpsOnly.this.status = status;
         }
 
         public void onProviderEnabled(String provider) {
-            Gps.this.provider = provider;
-            Gps.this.providerEnabled = true;
+            GpsOnly.this.provider = provider;
+            GpsOnly.this.providerEnabled = true;
         }
 
         public void onProviderDisabled(String provider) {
-            Gps.this.provider = provider;
-            Gps.this.providerEnabled = false;
+            GpsOnly.this.provider = provider;
+            GpsOnly.this.providerEnabled = false;
         }
     }
 }
