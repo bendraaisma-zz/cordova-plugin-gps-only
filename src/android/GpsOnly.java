@@ -21,7 +21,7 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static android.location.LocationManager.GPS_PROVIDER;
 import static android.location.LocationProvider.OUT_OF_SERVICE;
 
-public class Gps extends CordovaPlugin {
+public class GpsOnly extends CordovaPlugin {
 
     private static final String[] PERMISSION = {ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION};
     private static final int REQUEST_CODE = 0;
