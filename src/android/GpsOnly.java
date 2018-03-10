@@ -37,7 +37,7 @@ public class GpsOnly extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         locationManager = (LocationManager) webView.getContext().getSystemService(LOCATION_SERVICE);
-        if (!(cordova.hasPermission(PERMISSION[0]) && cordova.hasPermission(PERMISSION[2]))) {
+        if (!(cordova.hasPermission(PERMISSION[0]) && cordova.hasPermission(PERMISSION[1]))) {
             cordova.requestPermissions(this, REQUEST_CODE, PERMISSION);
         } else {
             locationManager.requestLocationUpdates(GPS_PROVIDER, 0, 0, new GpsOnlyLocationListener());
