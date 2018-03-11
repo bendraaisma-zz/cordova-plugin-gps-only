@@ -67,6 +67,7 @@ public class GpsOnly extends CordovaPlugin {
                             r.put("altitude", GpsOnly.this.location.getAltitude());
                             r.put("speed", GpsOnly.this.location.getSpeed());
                             r.put("time", GpsOnly.this.location.getTime());
+                            r.put("accuracy", GpsOnly.this.location.getAccuracy());
                             callbackContext.success(r);
                             i(TAG, "GPS successful");
                         } catch (JSONException e) {
