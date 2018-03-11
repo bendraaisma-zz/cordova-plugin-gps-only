@@ -12,16 +12,16 @@ Example:
 	...
     export class DashboardComponent implements OnInit {
     
-      public coordenate: GpsOnly;
+      public gpsOnly: GpsOnly;
       
       constructor() {
         this.platform.ready().then((readySource) => {
-      	   this.coordenate = new GpsOnly();
+      	   this.gpsOnly = new GpsOnly();
     	 });
       }
       
       getGPS() {
-        this.coordenate.coordenate((location) => {
+        this.gpsOnly.coordenate((location) => {
 	      if (location !== undefined) {
 	        ....
 	        item.setLatitudeInicio(location.latitude.toString());
